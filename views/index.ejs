@@ -1,0 +1,325 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Heroku - Node.JS</title>
+  <meta name="description" content="hello world deploy app node.js at heroku" />
+  <meta name="keywords" content="heroku, node.js" />
+  <meta name="author" content="Pedro Pereira" />
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
+    <style type="text/css">
+    /*------------------Header-------------------*/
+header .main-menu .nav > li > a {
+  padding: 0; }
+header .main-menu .navigation {
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  right: 20px;
+  top: 10%;
+  z-index: 9999;
+  list-style-type: none; }
+  header .main-menu .navigation li {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    margin: 20px 0;
+    display: block; }
+    header .main-menu .navigation li a {
+      display: block;
+      width: 20px;
+      height: 20px;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 50%;
+      border: 1px solid # 8A2BE2; }
+    header .main-menu .navigation li span {
+      position: absolute;
+      right: 30px;
+      top: 0;
+      border-left: 4px solid # 8A2BE2;
+      background-color: #333;
+      color: #fff;
+      width: 102px;
+      padding: 8px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translate(-20px, 0);
+      transition: all 0.4s ease-in-out; }
+    header .main-menu .navigation li span.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(0, 0); }
+  header .main-menu .navigation li.active a {
+    background: #ffac0c;
+    border-color: #fff; }    </style>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        window.alert = function(){};
+        var defaultCSS = document.getElementById('bootstrap-css');
+        function changeCSS(css){
+            if(css) $('head > link').filter(':first').replaceWith('<link rel="stylesheet" href="'+ css +'" type="text/css" />'); 
+            else $('head > link').filter(':first').replaceWith(defaultCSS); 
+        }
+        $( document ).ready(function() {
+          var iframe_height = parseInt($('html').height()); 
+          window.parent.postMessage( iframe_height, 'https://bootsnipp.com');
+        });
+    </script>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Tema desarrollada por Estela Silva. Desarrolladora Web -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <style>
+  /*------------------Header-------------------*/
+header .main-menu .nav > li > a {
+  padding: 0; }
+header .main-menu .navigation {
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  right: 20px;
+  top: 10%;
+  z-index: 9999;
+  list-style-type: none; }
+  header .main-menu .navigation li {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    margin: 20px 0;
+    display: block; }
+    header .main-menu .navigation li a {
+      display: block;
+      width: 20px;
+      height: 20px;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 50%;
+      border: 1px solid # 8A2BE2; }
+    header .main-menu .navigation li span {
+      position: absolute;
+      right: 30px;
+      top: 0;
+      border-left: 4px solid # 8A2BE2;
+      background-color: #333;
+      color: #fff;
+      width: 102px;
+      padding: 8px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translate(-20px, 0);
+      transition: all 0.4s ease-in-out; }
+    header .main-menu .navigation li span.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(0, 0); }
+  header .main-menu .navigation li.active a {
+    background: #ffac0c;
+    border-color: #fff; }
+	
+	html,
+body {
+  height: 100%; }
+.carousel,
+.item,
+.active {
+  height: 100%; }
+  .carousel,
+.item,
+.active {
+  height: 100%; }
+
+.carousel-inner {
+  height: 100%; }
+
+.fill {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover; }
+
+header {
+  margin: 0;
+  padding: 0; }
+
+header .logo {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  max-width: 200px;
+  z-index: 99;
+  opacity: 1;
+  transition: all 0.4s ease-in-out; }
+
+header .logo.hide-logo {
+  opacity: 0; }
+
+.carousel-fade .carousel-inner .item {
+  -webkit-transition-property: opacity;
+  transition-property: opacity; }
+
+.carousel-fade .carousel-inner .item,
+.carousel-fade .carousel-inner .active.left,
+.carousel-fade .carousel-inner .active.right {
+  opacity: 0; }
+
+.carousel-fade .carousel-inner .active,
+.carousel-fade .carousel-inner .next.left,
+.carousel-fade .carousel-inner .prev.right {
+  opacity: 1; }
+
+.carousel-fade .carousel-inner .next,
+.carousel-fade .carousel-inner .prev,
+.carousel-fade .carousel-inner .active.left,
+.carousel-fade .carousel-inner .active.right {
+  left: 0;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0); }
+
+.carousel-fade .carousel-control {
+  z-index: 2; }
+
+.carousel-indicators {
+  left: 20px;
+  text-align: left;
+  margin-left: 0; }
+
+.carousel-indicators li {
+  width: 20px;
+  background: rgba(0, 0, 0, 0.2); }
+
+.carousel-indicators .active {
+  width: 20px;
+  height: 11px;
+  background: #ffac0c;
+  border-color: #ffac0c; }
+
+.carousel-caption {
+  text-align: left; }
+  .carousel-caption .content {
+    padding: 40px; }
+    .carousel-caption .content h2 {
+      font-size: 50px; }
+    .carousel-caption .content p {
+      font-size: 20px;
+      line-height: 32px;
+      font-weight: 100;
+      text-shadow:none; }
+    .carousel-caption .content .btn-slider {
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #fff;
+      text-transform: uppercase;
+      border-radius: 0;
+      margin-top: 30px;
+      padding: 10px 12px;
+      transition: all 0.4s ease-in-out; }
+      .carousel-caption .content .btn-slider:hover {
+        background: rgba(0, 0, 0, 0.1); }
+  </style>
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+<header>
+        
+        <div class="main-menu" id="navigation">
+          <ul class="nav navigation">
+            <li class="active"><a href="#home" data-title="Home"></a></li>
+            <li><a href="#services" data-title="Services"></a></li>
+            <li><a href="#event" data-title="Events"></a></li>
+            <li><a href="#menu" data-title="Menu"></a></li>
+            <li><a href="#book" data-title="Book a Table"></a></li>
+            <li><a href="#gallery" data-title="Gallery"></a></li>
+          </ul>
+        </div>
+</header>
+
+<!-- Full Page Image Background Carousel Header -->
+<section id="myCarousel" class="carousel slide carousel-fade">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for Slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <!-- Set the first background image using inline CSS below. -->
+                <div class="fill" style="background-image:url('img/slider1.jpg');"></div>
+                <div class="carousel-caption">
+                    <div class="content wow fadeInRight">
+                      <h2 class="dancing">Bakery and Coffee</h2>
+                       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <a href="#book" class="btn btn-slider">Book a Table</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item">
+                <!-- Set the second background image using inline CSS below. -->
+                <div class="fill" style="background-image:url('img/slider2.jpg');"></div>
+                <div class="carousel-caption">
+                    <div class="content wow fadeInRight">
+                      
+                      <h2 class="dancing">Sweets and Fruits</h2>
+                       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <a href="#book" class="btn btn-slider">Book a Table</a>
+                    
+                    </div>                
+                </div>
+            </div>
+
+            <div class="item">
+                <!-- Set the third background image using inline CSS below. -->
+                <div class="fill" style="background-image:url('img/slider3.jpg');"></div>
+                <div class="carousel-caption">
+                    <div class="content wow fadeInRight">
+                      
+                      <h2 class="dancing">Salad and Snacks</h2>
+                       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <a href="#book" class="btn btn-slider">Book a Table</a>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+<!-- End of slider section -->
+
+</body>
+</html>
+	<script type="text/javascript">
+		</script>
+</body>
+</html>
