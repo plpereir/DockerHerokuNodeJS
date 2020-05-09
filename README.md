@@ -7,6 +7,8 @@ Dockerizing (Building Docker Images with heroku.yml) a Node.js web app on Heroku
 
 Getting started:
 
+#0 After create git repository, node.js app with .yml file, heroku account, starting docker:
+
 #1 Create a heroku.yml file in your application’s root directory.
 
 #2 Commit the file to your repo:
