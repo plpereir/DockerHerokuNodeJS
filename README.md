@@ -1,2 +1,3 @@
 # DockerHerokuNodeJS
-This lab simple Node.JS deployed Heroku into Docker Container.
+
+Dockerizing (Building Docker Images with heroku.yml) a Node.js web app on Heroku
